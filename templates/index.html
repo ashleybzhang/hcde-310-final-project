@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syncup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav>
+    <span class="wordmark">syncup</span>
+    {% if logged_in %}
+      <a href="/logout">log out</a>
+    {% endif %}
+  </nav>
+
+  <main>
+    <header>
+      <h1>Find time<br><em>everyone</em> can make.</h1>
+      <p>Enter your group's emails, pick a window, and we'll handle the rest.</p>
+    </header>
+
+    {% if not logged_in %}
+
+      <div class="card center">
+        <p class="muted">Connect your Google Calendar to get started</p>
+        <a href="/login" class="btn-google">
+          <svg width="18" height="18" viewBox="0 0 48 48">
+            <path d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 5.1 29.6 3 24 3 12.9 3 4 11.9 4 23s8.9 20 20 20c11 0 20-8 20-20 0-1.3-.2-2.7-.5-4z" fill="#FFC107"/>
+            <path d="M6.3 14.7l7 5.1C15.1 16 19.2 13 24 13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 5.1 29.6 3 24 3c-7.6 0-14.2 4.1-17.7 10.2z" fill="#FF3D00"/>
+            <path d="M24 43c5.5 0 10.5-1.9 14.3-5.1l-6.6-5.5C29.8 34.1 27 35 24 35c-6 0-10.7-4.1-11.7-9.6l-7 5.4C8.5 39 15.7 43 24 43z" fill="#4CAF50"/>
+            <path d="M44.5 20H24v8.5h11.8c-1 2.7-2.9 5-5.3 6.5l6.6 5.5C41 37.4 44 31 44 24c0-1.3-.2-2.7-.5-4z" fill="#1976D2"/>
+          </svg>
+          Sign in with Google
+        </a>
+      </div>
+
+    {% else %}
+
+      <form class="card" action="/find-times" method="POST">
+
+        <div class="field">
+          <label for="emails">Participant emails</label>
+          <input type="text" id="emails" name="emails" placeholder="alice@gmail.com, bob@gmail.com" required />
+          <span class="hint">Separate with commas · max 5 people</span>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="duration">Duration</label>
+            <select id="duration" name="duration">
+              <option value="30">30 min</option>
+              <option value="60" selected>1 hour</option>
+              <option value="90">1.5 hours</option>
+              <option value="120">2 hours</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="start_date">From</label>
+            <input type="date" id="start_date" name="start_date" required />
+          </div>
+          <div class="field">
+            <label for="end_date">To</label>
+            <input type="date" id="end_date" name="end_date" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Find times →</button>
+
+      </form>
+
+    {% endif %}
+  </main>
+
+</body>
+</html>

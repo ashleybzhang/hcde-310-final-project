@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syncup — Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="wordmark">syncup</a>
+    <a href="/">← new search</a>
+  </nav>
+
+  <main>
+    <header>
+      <h1>Here's when<br><em>everyone's</em> free.</h1>
+      <p>{{ duration }} min · {{ emails|length }} participant{{ 's' if emails|length != 1 }}</p>
+    </header>
+
+    {% if suggestions %}
+
+      <div class="slots">
+        {% for slot in suggestions %}
+          <div class="card slot {% if loop.first %}slot-top{% endif %}">
+            {% if loop.first %}<span class="badge">Best match</span>{% endif %}
+            <p class="slot-time">{{ slot.label }}</p>
+            <form action="/schedule-event" method="POST">
+              <input type="hidden" name="start_time" value="{{ slot.start_iso }}">
+              <input type="hidden" name="end_time"   value="{{ slot.end_iso }}">
+              <input type="hidden" name="emails"     value='{{ emails | tojson }}'>
+              <button type="submit" class="btn-outline">Schedule this →</button>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+
+    {% else %}
+
+      <div class="card center">
+        <p class="slot-time">No open slots found</p>
+        <p class="muted">Try a wider date range or shorter duration.</p>
+        <a href="/" class="btn-primary" style="margin-top:1rem; display:inline-block;">Try again →</a>
+      </div>
+
+    {% endif %}
+  </main>
+
+</body>
+</html>
