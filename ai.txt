@@ -1,0 +1,9 @@
+I used Claude AI to develop a plan and guide me through the code writing process. When I
+encountered an error, I would ask Claude why this error is popping up, and what I can do to fix it.
+I especially stuggled with writing the auth.py - everytime I ran the code, an error page would pop up.
+Once the error was resolved, the code seemed to be running, but the action was not being processed 
+properly and it would remain on the same page. Claude was able to scan my code and propose solutions with
+explainations on why the change is relevant. Some questions I asked Claude include:
+
+Apart from error fixes, I also asked Claude to help make my interactive system more proffessional,
+making adjustments and modifications to my css file to 
