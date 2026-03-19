@@ -1,9 +1,16 @@
 I used Claude AI to develop a plan and guide me through the code writing process. When I
 encountered an error, I would ask Claude why this error is popping up, and what I can do to fix it.
-I especially stuggled with writing the auth.py - everytime I ran the code, an error page would pop up.
+I especially struggled with writing the auth.py - everytime I ran the code, an error page would pop up.
 Once the error was resolved, the code seemed to be running, but the action was not being processed 
 properly and it would remain on the same page. Claude was able to scan my code and propose solutions with
-explainations on why the change is relevant. Some questions I asked Claude include:
+explanations on why the change is relevant. Some examples of questions I asked Claude include:
 
-Apart from error fixes, I also asked Claude to help make my interactive system more proffessional,
-making adjustments and modifications to my css file to 
+- I am starting on a project for my interactive systems and technology class. I made a tentative plan/overview 
+  for my idea (attached). Please write me a detailed plan on how I can execute this project.
+- After I log all the information in, it is not running, but it is loading extremely slowly...is this normal?
+- It changed to \client_secret_619061711814-mp78rjbuhihq5c1339uoiginomk3d17v.apps.googleusercontent.com.json
+  I'm confused. I did not change it - why would it change on its own?
+- The same error keeps on popping up. This is what's displayed:
+
+Apart from error fixes, I also asked Claude to help make my interactive system more professional,
+making adjustments and modifications to my css file.
